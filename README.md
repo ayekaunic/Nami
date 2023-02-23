@@ -1,2 +1,6 @@
 # Nami
-A virtual assistant named "Nami" which can perform Google searches and Wikipedia lookups using voice commands, while also being able to be put on hold and woken up again.
+This code is a Python script for creating a virtual voice assistant named Nami. It starts by importing the necessary libraries for speech recognition, web browsing, Wikipedia searches, text-to-speech conversion, and timekeeping. The **sr.Recognizer()** function initializes the speech recognizer while **pyttsx3.init()** initializes the text-to-speech engine. The code first asks the user for their name, uses speech recognition to convert the user's spoken name into text, and then greets the user by name.
+
+The code then enters a loop that listens to the user's voice input and performs actions based on what the user says. If the user says "search Google for XYZ," the code extracts the search term "XYZ" and performs a Google search on it. If the user says "search Wikipedia for XYZ," the code looks up the term "XYZ" on Wikipedia and returns a summary of the results. If the user says "go to sleep Nami," the code ends the program. Finally, if the user says "on hold," the code goes to a sleep state until the user says "wake up" to resume the program.
+
+Throughout the code, the text-to-speech engine is used to provide responses and narrate search results back to the user. The **time.sleep()** function is used to pause the program between actions to avoid overwhelming the user with too much information.

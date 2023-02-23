@@ -81,16 +81,21 @@ while True:
             print(f"\nlooking up {search_term} on wikipedia")
             nami.say(f"looking up {search_term} on wikipedia")
             nami.runAndWait()
-            summary = wikipedia.summary(search_term, sentences = 2)
-            print(f"{CLEAR}")
-            print(f"{CLEAR_AND_RETURN}")
-            print("\nthis is what i've learned: ")
-            nami.say("this is what i've learned: ")
-            nami.runAndWait()
-            time.sleep(1)
-            print(f"\n{summary}")
-            nami.say(summary)
-            nami.runAndWait()
+            try:
+                summary = wikipedia.summary(search_term, sentences = 2)
+                print(f"{CLEAR}")
+                print(f"{CLEAR_AND_RETURN}")
+                print("\nthis is what i've learned: ")
+                nami.say("this is what i've learned: ")
+                nami.runAndWait()
+                time.sleep(1)
+                print(f"\n{summary}")
+                nami.say(summary)
+                nami.runAndWait()
+            except:
+                print(f"\nsorry {name}. i could not find anything on {search_term} on wikipedia. please try refining your query.")
+                nami.say(f"sorry {name}. i could not find anything on {search_term} on wikipedia. please try refining your query.")
+                nami.runAndWait()
             
         # if you want to turn off the voice assistant, say 'go to sleep nami'
         elif "go to sleep" in text.lower():

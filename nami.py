@@ -4,6 +4,10 @@ import webbrowser
 import wikipedia
 import pyttsx3
 import time
+from translate import Translator
+from pypinyin import lazy_pinyin
+import re
+
 
 CLEAR = "\033[2J"
 CLEAR_AND_RETURN = "\033[H"
@@ -44,7 +48,7 @@ while True:
 # greeting
 print(f"{CLEAR}")
 print(f"{CLEAR_AND_RETURN}")
-greeting = f"\nnice to meet you {name}. how can i help you? i can perform google searches and wikipedia lookups."
+greeting = f"\nnice to meet you {name}. how can i help you? i can perform google searches and wikipedia lookups. i'm also pretty decent at chinese. although i have yet to nail down my pronounciations."
 print(greeting)
 nami.say(greeting)
 nami.runAndWait()
@@ -63,7 +67,7 @@ while True:
             
         # perform action based on user input
     
-        # if you want to perform a google search for 'xyz', say 'search google for xyz'
+        # if you want to perform a google search for 'xyz', say 'search google for [xyz]'
         if "google" in text.lower():
             search_term = text.split("for")[1]
             print(f"\nsearching google for: {search_term}")
@@ -75,7 +79,7 @@ while True:
             nami.runAndWait()
             time.sleep(1)
             
-        # if you want to look up 'xyz' on wikipedia, say 'search wikipedia for xyz'
+        # if you want to look up 'xyz' on wikipedia, say 'search wikipedia for [xyz]'
         elif "wikipedia" in text.lower():
             search_term = text.split("for")[1]
             print(f"\nlooking up {search_term} on wikipedia")
@@ -96,15 +100,41 @@ while True:
                 print(f"\nsorry {name}. i could not find anything on {search_term} on wikipedia. please try refining your query.")
                 nami.say(f"sorry {name}. i could not find anything on {search_term} on wikipedia. please try refining your query.")
                 nami.runAndWait()
-            
-        # if you want to turn off the voice assistant, say 'go to sleep nami'
+                
+        # to translate 'xyz' from english to chinese, say 'how do i say [xyz] in chinese'
+        elif "chinese" in text.lower():
+            to_translate = text
+            translator = Translator(to_lang="zh")
+            match = re.search(r'\bsay\s+(.*)\b(in chinese)?\b', to_translate, re.IGNORECASE)
+            if match:
+                to_translate = match.group(1)
+                if match.group(2):
+                    to_translate = ' '.join(to_translate.split()[:-2])
+            try:
+                chinese = translator.translate(to_translate)
+                chinese = ' '.join(lazy_pinyin(chinese))
+                print(f"{CLEAR}")
+                print(f"{CLEAR_AND_RETURN}")
+                print(f"\ntranslation: {chinese}")
+                nami.say(f"that would be: {chinese}")
+                nami.runAndWait()
+            except:
+                print(to_translate)
+                print(chinese)
+                anything_else =False
+                print(f"\nsorry {name}. i didn't get that. come again?")
+                nami.say(f"sorry {name}. i didn't get that. come again?")
+                nami.runAndWait()
+                
+        # if you want to turn off the voice assistant, say 'go to sleep'
         elif "go to sleep" in text.lower():
-            print(f"\nalright {name}, have a good day!")
-            nami.say(f"alright {name}, have a good day!")
+            goodbye_message = f"alright {name}. Have a good day!"
+            print(f"\n{goodbye_message}")
+            nami.say(goodbye_message)
             nami.runAndWait()
             break
         
-        # if you want it to be on stand by, say 'stay on hold'
+        # if you want it to be on stand by, say 'on hold'
         elif "on hold" in text.lower():
             print(f"\nokay {name}. i'll be here if you need me. just say, wake up, to wake me up!")
             nami.say(f"okay {name}. i'll be here if you need me. just say, wake up, to wake me up!")

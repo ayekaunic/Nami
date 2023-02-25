@@ -1,0 +1,24 @@
+User Manual for Nami - Virtual Assistant
+
+Welcome to Nami - Virtual Assistant! Nami is your personal voice assistant that can perform various tasks for you. With Nami, you can perform Google searches, look up information on Wikipedia, and even translate text to Chinese.
+
+Getting Started
+
+To start Nami, run the program on your computer.
+Nami will ask for your name to greet you. Speak clearly and say your name.
+Performing Tasks
+
+Once Nami greets you, you can ask Nami to perform various tasks.
+To perform a Google search, say "search Google for [search term]". Nami will perform a Google search for the specified search term.
+To look up information on Wikipedia, say "search Wikipedia for [search term]". Nami will look up the specified search term on Wikipedia and provide a summary.
+To translate text to Chinese, say "how do I say [text] in Chinese". Nami will translate the specified text to Chinese and provide the translation.
+Ending the Program
+
+To end the program, say "go to sleep". Nami will say a goodbye message and the program will end.
+To put Nami on standby, say "on hold". Nami will wait for further commands and will not execute any actions until you say "wake up".
+Note:
+
+Speak clearly and loudly for Nami to understand your commands.
+Nami might take some time to process your command, be patient.
+If Nami does not understand your command, it will ask you to repeat it.
+The program will end automatically after 81 seconds of inactivity.
